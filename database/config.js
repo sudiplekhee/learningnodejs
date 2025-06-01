@@ -1,7 +1,6 @@
-const {Sequelize} = require("sequelize")
+const {Sequelize, DataTypes} = require("sequelize")
 // const {sequelize} = require("sequelize").Sequelize
 require("dotenv").config() //yo garepaxi only hami dotenv ko data haru yo file ma access garna milxa
-
 
 //making object from sequelize class
 const sequelize = new Sequelize({
@@ -20,6 +19,14 @@ sequelize.authenticate().then(()=>{
 })
 
 
+const db = {}
+db.blogs = require("./../models/blogmodel")(sequelize,DataTypes)
+db.users = require("./../models/userModel")(sequelize,DataTypes)
+db.products = require("./../models/productModel")(sequelize,DataTypes)
+
+sequelize.sync({ alter : false}).then(()=>{
+    console.log("Migrated successfully")
+})  //migration code
 
 module.exports = sequelize
 
