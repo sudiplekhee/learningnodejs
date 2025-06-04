@@ -24,7 +24,7 @@ db.blogs = require("./../models/blogmodel")(sequelize,DataTypes)
 db.users = require("./../models/userModel")(sequelize,DataTypes)
 db.products = require("./../models/productModel")(sequelize,DataTypes)
 
-sequelize.sync({ alter : false}).then(()=>{
+sequelize.sync({ alter : true}).then(()=>{
     console.log("Migrated successfully")
 })  //migration code
 
