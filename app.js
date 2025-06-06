@@ -1,6 +1,7 @@
 const express=require("express")
 const app=express()
 require("./database/config")
+require("bcrypt")
 
 app.set("view engine", "ejs")
 
@@ -27,6 +28,19 @@ app.get("/login", (req, res)=>{
 //register - page
 app.get("/register", (req, res)=>{
     res.render("authentication/register")
+})
+
+app.post("/register", async (req,res)=>{
+    // console.log(req.body)
+    const {username, email, password, confirm_password} = req.body
+
+    await db.users.create({
+        username : username,
+        password : bcrypt.hashSync(password,10),
+        email : email
+    })
+    res.send("Registered Successfully")
+    //insert into users(emails,username,password) value()
 })
 
 app.listen(4000,function(){

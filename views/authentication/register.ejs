@@ -9,7 +9,7 @@
 <body class="bg-gradient-to-r from-indigo-800 to-blue-900 flex items-center justify-center min-h-screen p-4">
     <div class="bg-white rounded-xl shadow-2xl p-8 max-w-md w-full animate-fade-in">
         <h2 class="text-2xl font-bold text-center text-indigo-800 mb-8">Create an Account</h2>
-        <form id="registrationForm" class="space-y-6" novalidate>
+        <form method="post" action="/register" id="registrationForm" class="space-y-6" novalidate>
             <div>
                 <label for="username" class="block text-indigo-900 font-semibold mb-2">Username</label>
                 <input 
@@ -47,10 +47,10 @@
             </div>
 
             <div>
-                <label for="confirm-password" class="block text-indigo-900 font-semibold mb-2">Confirm Password</label>
+                <label for="confirm_password" class="block text-indigo-900 font-semibold mb-2">Confirm Password</label>
                 <input 
                     type="password" 
-                    id="confirm-password" 
+                    id="confirm_password" 
                     class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-800 transition-all duration-300" 
                     placeholder="Confirm your password" 
                     required
@@ -116,7 +116,7 @@
             }
 
             // Validate confirm password
-            const confirmPassword = document.getElementById('confirm-password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
             if (password !== confirmPassword) {
                 document.getElementById('confirmPasswordError').classList.remove('hidden');
                 isValid = false;
